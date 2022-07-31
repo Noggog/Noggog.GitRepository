@@ -1,0 +1,1 @@
+# Noggog.GitRepository

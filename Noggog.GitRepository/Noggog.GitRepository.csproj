@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyName>Noggog.GitRepository</AssemblyName>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Noggog</Authors>
+        <Company>Noggog</Company>
+        <LangVersion>preview</LangVersion>
+        <IsPackable>true</IsPackable>
+        <Description>Wrappers and interfaces around interacting with a GitRepository</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
+        <PackageReference Include="Noggog.CSharpExt" Version="2.49.0" />
+        <PackageReference Include="GitInfo" Version="2.2.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="NuGetizer" Version="0.8.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="RD /S /Q &quot;%25USERPROFILE%25\.nuget\packages\noggog.gitrepository&quot;" Condition="!$([MSBuild]::IsOSUnixLike())" />
+    </Target>
+
+</Project>
