@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noggog.GitRepository", "Noggog.GitRepository\Noggog.GitRepository.csproj", "{0C3382C5-33B6-4E88-BB3D-69E9238FD359}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noggog.GitRepository.Tests", "Noggog.GitRepository.Tests\Noggog.GitRepository.Tests.csproj", "{84AB254D-9179-4C9B-BEAF-0CC9EEFB41C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{0C3382C5-33B6-4E88-BB3D-69E9238FD359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3382C5-33B6-4E88-BB3D-69E9238FD359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C3382C5-33B6-4E88-BB3D-69E9238FD359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84AB254D-9179-4C9B-BEAF-0CC9EEFB41C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84AB254D-9179-4C9B-BEAF-0CC9EEFB41C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84AB254D-9179-4C9B-BEAF-0CC9EEFB41C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84AB254D-9179-4C9B-BEAF-0CC9EEFB41C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
