@@ -113,11 +113,9 @@ public class CheckOrCloneRepoTests
         ErrorResponse failed,
         DirectoryPath local,
         GetResponse<string> remote,
-        DirectoryPath clonePath,
         CheckOrCloneRepo sut)
     {
         sut.ShouldKeep.ShouldKeep(default, default).ReturnsForAnyArgs(failed);
-        sut.CloneRepo.Clone(default!, default).ReturnsForAnyArgs(clonePath);
         sut.Check(
             remote,
             local);

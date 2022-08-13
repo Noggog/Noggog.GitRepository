@@ -58,8 +58,8 @@ public class CheckOrCloneRepo : ICheckOrCloneRepo
                 
             if (remote.Failed) return GetResponse<RepoPathPair>.Fail(new(remote.Value, string.Empty), remote.Reason);
             _logger.LogInformation("Cloning remote {RemotePath}", remote.Value);
-            var clonePath = CloneRepo.Clone(remote.Value, localDir);
-            return GetResponse<RepoPathPair>.Succeed(new(remote.Value, clonePath), remote.Reason);
+            CloneRepo.Clone(remote.Value, localDir);
+            return GetResponse<RepoPathPair>.Succeed(new(remote.Value, localDir), remote.Reason);
         }
         catch (Exception ex)
         {

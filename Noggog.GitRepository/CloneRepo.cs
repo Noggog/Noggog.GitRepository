@@ -5,14 +5,14 @@ namespace Noggog.GitRepository;
 
 public interface ICloneRepo
 {
-    DirectoryPath Clone(string repoPath, DirectoryPath localDir);
+    void Clone(string repoPath, DirectoryPath localDir);
 }
 
 [ExcludeFromCodeCoverage]
 public class CloneRepo : ICloneRepo
 {
-    public DirectoryPath Clone(string repoPath, DirectoryPath localDir)
+    public void Clone(string repoPath, DirectoryPath localDir)
     {
-        return Repository.Clone(repoPath, localDir);
+        Repository.Clone(repoPath, localDir);
     }
 }
