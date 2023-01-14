@@ -1,5 +1,17 @@
 <Project>
-  <!-- To be redefined by GitInfo after restore. -->
+
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GitInfo" >
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    
+    <!-- To be redefined by GitInfo after restore. -->
   <Target Name="GitVersion" />
 
   <Target Name="SetVersion"

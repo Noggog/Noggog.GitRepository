@@ -14,17 +14,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-        <PackageReference Include="Noggog.CSharpExt" Version="2.49.0" />
-        <PackageReference Include="GitInfo" Version="2.2.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="NuGetizer" Version="0.8.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="LibGit2Sharp" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+        <PackageReference Include="Noggog.CSharpExt" />
     </ItemGroup>
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
