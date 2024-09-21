@@ -12,7 +12,8 @@ public class DefaultAutoData : AutoDataAttribute
         bool ConfigureMembers = false,
         bool UseMockFileSystem = true,
         bool GenerateDelegates = false,
-        bool OmitAutoProperties = false)
+        bool OmitAutoProperties = false,
+        TargetFileSystem TargetFileSystem = TargetFileSystem.Fake)
         : base(() =>
         {
             var ret = new Fixture();
@@ -21,7 +22,7 @@ public class DefaultAutoData : AutoDataAttribute
                 ConfigureMembers = ConfigureMembers,
                 GenerateDelegates = GenerateDelegates
             });
-            ret.Customize(new DefaultCustomization(UseMockFileSystem));
+            ret.Customize(new DefaultCustomization(TargetFileSystem));
             ret.OmitAutoProperties = OmitAutoProperties;
             return ret;
         })
