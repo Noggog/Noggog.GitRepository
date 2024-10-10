@@ -7,7 +7,8 @@ public interface ICommit
     string Sha { get; }
     string CommitMessage { get; }
     DateTime CommitDate { get; }
-    Commit GetUnderlying();
+    IEnumerable<ICommit> Parents { get; }
+    internal Commit GetUnderlying();
 }
 
 public class CommitWrapper : ICommit
@@ -16,6 +17,7 @@ public class CommitWrapper : ICommit
     public string Sha => _commit.Sha;
     public string CommitMessage => _commit.Message;
     public DateTime CommitDate => _commit.Author.When.LocalDateTime;
+    public IEnumerable<ICommit> Parents => _commit.Parents.Select(x => new CommitWrapper(x));
 
     public CommitWrapper(Commit commit)
     {
