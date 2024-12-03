@@ -1,15 +1,2 @@
 <Project>
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>nullable</WarningsAsErrors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <ImplicitUsings>true</ImplicitUsings>
-  </PropertyGroup>
-
-  <ItemGroup >
-    <PackageReference Include="NuGetizer" >
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
 </Project>

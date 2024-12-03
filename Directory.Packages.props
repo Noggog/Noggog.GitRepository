@@ -8,6 +8,7 @@
     <PackageVersion Include="LibGit2Sharp">
       <Version>0.30.0</Version>
     </PackageVersion>
+      <PackageVersion Include="GitVersion.MsBuild" Version="6.0.5" />
     <PackageVersion Include="Microsoft.Extensions.Logging">
       <Version>8.0.0</Version>
     </PackageVersion>

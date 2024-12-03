@@ -9,18 +9,24 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET 8
+      with:
+        fetch-depth: 0
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.*
+        dotnet-version: 9.0.*
     - name: Install dependencies
       run: |
         dotnet clean -c Release && dotnet nuget locals all --clear
         dotnet restore
     - name: Build
-      run: dotnet build --no-restore -c Release /p:Version=${{ github.event.release.tag_name }} -p:PackageReleaseNotes="See https://github.com/Noggog/Loqui/releases/tag/${{ github.event.release.tag_name }}"
+      run: dotnet build --no-restore -c Release /p:GeneratePackageOnBuild=false
     - name: Test
       run: dotnet test -c Release --no-build
+    - name: Pack
+      if: ${{ success() }}
+      run: |
+        dotnet pack -c Release --no-build --no-restore -o out --include-symbols -p:SymbolPackageFormat=snupkg
     - name: Publish to Github
       uses: svenstaro/upload-release-action@v2
       with:
