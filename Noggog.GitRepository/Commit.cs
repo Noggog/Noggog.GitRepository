@@ -8,7 +8,6 @@ public interface ICommit
     string CommitMessage { get; }
     DateTime CommitDate { get; }
     IEnumerable<ICommit> Parents { get; }
-    internal Commit GetUnderlying();
 }
 
 public class CommitWrapper : ICommit

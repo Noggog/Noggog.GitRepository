@@ -71,7 +71,8 @@ public class GitRepository : IGitRepository
 
     public void ResetHard(ICommit commit)
     {
-        _repository.Reset(ResetMode.Hard, commit.GetUnderlying(), new CheckoutOptions());
+        var underlyingCommit = _repository.Lookup<Commit>(commit.Sha);
+        _repository.Reset(ResetMode.Hard, underlyingCommit, new CheckoutOptions());
     }
 
     public ICommit? TryGetCommit(string sha, out bool validSha)
