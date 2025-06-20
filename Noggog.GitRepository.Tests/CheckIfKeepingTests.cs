@@ -1,10 +1,10 @@
 ﻿using Xunit;
-using FluentAssertions;
 using LibGit2Sharp;
 using Noggog;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Noggog.GitRepository;
+using Shouldly;
 
 namespace Synthesis.Bethesda.UnitTests.Execution.GitRepository;
 
@@ -17,7 +17,7 @@ public class CheckIfKeepingTests
         CheckIfKeeping sut)
     {
         sut.ShouldKeep(missingDir, remoteUrl)
-            .Succeeded.Should().BeFalse();
+            .Succeeded.ShouldBeFalse();
     }
         
     [Theory, DefaultAutoData]
@@ -27,7 +27,7 @@ public class CheckIfKeepingTests
         CheckIfKeeping sut)
     {
         sut.ShouldKeep(existingDir, failedRemote)
-            .Succeeded.Should().BeFalse();
+            .Succeeded.ShouldBeFalse();
     }
         
     [Theory, DefaultAutoData]
@@ -47,7 +47,7 @@ public class CheckIfKeepingTests
         CheckIfKeeping sut)
     {
         sut.ShouldKeep(existingDir, remote, x => ErrorResponse.Failure)
-            .Succeeded.Should().BeFalse();
+            .Succeeded.ShouldBeFalse();
     }
         
     [Theory, DefaultAutoData]
@@ -61,7 +61,7 @@ public class CheckIfKeepingTests
         checkout.Repository.MainRemoteUrl.Returns(remote.Value);
 
         sut.ShouldKeep(existingDir, remote, isDesirable: (x) => ErrorResponse.Success)
-            .Succeeded.Should().BeTrue();
+            .Succeeded.ShouldBeTrue();
     }
         
     [Theory, DefaultAutoData]
@@ -75,7 +75,7 @@ public class CheckIfKeepingTests
         checkout.Repository.MainRemoteUrl.Returns(remote.Value);
 
         sut.ShouldKeep(existingDir, remote, isDesirable: null)
-            .Succeeded.Should().BeTrue();
+            .Succeeded.ShouldBeTrue();
     }
         
     [Theory, DefaultAutoData]
@@ -89,7 +89,7 @@ public class CheckIfKeepingTests
         checkout.Repository.MainRemoteUrl.Returns(remote.Value);
             
         sut.ShouldKeep(existingDir, remote)
-            .Succeeded.Should().BeTrue();
+            .Succeeded.ShouldBeTrue();
     }
         
     [Theory, DefaultAutoData]
@@ -103,7 +103,7 @@ public class CheckIfKeepingTests
         checkout.Repository.MainRemoteUrl.Returns(otherAddress);
             
         sut.ShouldKeep(existingDir, remote)
-            .Succeeded.Should().BeFalse();
+            .Succeeded.ShouldBeFalse();
     }
         
     [Theory, DefaultAutoData]
@@ -115,6 +115,6 @@ public class CheckIfKeepingTests
         sut.RepoCheckouts.Get(default).ThrowsForAnyArgs<RepositoryNotFoundException>();
             
         sut.ShouldKeep(existingDir, remote)
-            .Succeeded.Should().BeFalse();
+            .Succeeded.ShouldBeFalse();
     }
 }

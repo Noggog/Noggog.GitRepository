@@ -1,8 +1,8 @@
-﻿using FluentAssertions;
-using Noggog;
+﻿using Noggog;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Noggog.GitRepository;
+using Shouldly;
 using Xunit;
 
 namespace Synthesis.Bethesda.UnitTests.Execution.GitRepository;
@@ -19,9 +19,9 @@ public class CheckOrCloneRepoTests
         sut.ShouldKeep.ShouldKeep(default, default).ReturnsForAnyArgs(success);
         var ret = sut.Check(remote, local);
         sut.ShouldKeep.Received().ShouldKeep(local, remote);
-        ret.Succeeded.Should().BeTrue();
-        ret.Value.Remote.Should().Be(remote.Value);
-        ret.Value.Local.Should().Be(local);
+        ret.Succeeded.ShouldBeTrue();
+        ret.Value.Remote.ShouldBe(remote.Value);
+        ret.Value.Local.ShouldBe(local);
         sut.CloneRepo.DidNotReceiveWithAnyArgs().Clone(default!, default);
     }
 
@@ -34,8 +34,8 @@ public class CheckOrCloneRepoTests
     {
         sut.ShouldKeep.ShouldKeep(default, default).ReturnsForAnyArgs(failed);
         var ret = sut.Check(failedRemote, local);
-        ret.Succeeded.Should().BeFalse();
-        ret.Reason.Should().Be(failedRemote.Reason);
+        ret.Succeeded.ShouldBeFalse();
+        ret.Reason.ShouldBe(failedRemote.Reason);
     }
 
     [Theory, DefaultAutoData]
@@ -59,7 +59,7 @@ public class CheckOrCloneRepoTests
     {
         sut.ShouldKeep.ShouldKeep(default, default).ThrowsForAnyArgs<NotImplementedException>();
         var ret = sut.Check(remote, local);
-        ret.Succeeded.Should().BeFalse();
+        ret.Succeeded.ShouldBeFalse();
     }
 
     [Theory, DefaultAutoData]
