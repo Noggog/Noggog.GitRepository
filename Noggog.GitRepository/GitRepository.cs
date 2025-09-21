@@ -12,6 +12,7 @@ public interface IGitRepository : IDisposable
     IBranch? MainBranch { get; }
     string WorkingDirectory { get; }
     string? MainRemoteUrl { get; }
+    bool HasUncommittedChanges { get; }
     void Fetch();
     void ResetHard();
     void ResetHard(ICommit commit);
@@ -28,7 +29,7 @@ public interface IGitRepository : IDisposable
 [ExcludeFromCodeCoverage]
 public class GitRepository : IGitRepository
 {
-    private static Signature PlaceholderSignature = new("synthesis", "someemail@gmail.com", DateTimeOffset.Now);
+    private static Signature PlaceholderSignature = new("noggog", "someemail@gmail.com", DateTimeOffset.Now);
     private readonly Repository _repository;
 
     public IEnumerable<IBranch> Branches => _repository.Branches.Select(x => new BranchWrapper(x));
@@ -48,6 +49,7 @@ public class GitRepository : IGitRepository
         
     public string WorkingDirectory => _repository.Info.WorkingDirectory;
     public string? MainRemoteUrl => _repository.Network.Remotes.FirstOrDefault()?.Url;
+    public bool HasUncommittedChanges => _repository.RetrieveStatus().IsDirty;
 
     public GitRepository(Repository repository)
     {
