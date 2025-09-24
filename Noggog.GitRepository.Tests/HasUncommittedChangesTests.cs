@@ -18,7 +18,7 @@ public class HasUncommittedChangesTests
 
         public TestRepository()
         {
-            _tempFolder = TempFolder.FactoryByAddedPath(nameof(HasUncommittedChangesTests));
+            _tempFolder = TempFolder.Factory();
             TempPath = _tempFolder.Dir;
             Repository.Init(TempPath);
             var libGit2Repository = new Repository(TempPath);
